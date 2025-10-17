@@ -220,7 +220,7 @@
 
         <aside class="panel">
           <div class="message-box">
-            <div id="messageText" class="message-text">Perdon la demora pero ya esta 😘</div>
+            <div id="messageText" class="message-text">Perdon la demora, pero ya esta 😘</div>
           </div>
 
           <div class="heart-wrap">
@@ -260,7 +260,7 @@ const messageText = document.getElementById('messageText');
 
 const versos = [
   "“Te quiero no por quién eres, sino por quién soy cuando estoy contigo.” — Jorge Luis Borges",
-  "“No te rindas, aún estás a tiempo de alcanzar y comenzar de nuevo.” — Mario Benedetti",
+  "“Te quiero para volvernos locos de risa ebrios de nada y pasear sin prisa por las calles, eso si, tomados de la mano mejor dicho de el corazon.” — Mario Benedetti",
   "“Te he nombrado reina porque eres lo que amo más que a mí mismo.” — Pablo Neruda",
   "“En un beso, sabrás todo lo que he callado.” — Pablo Neruda",
   "“Eres el silencio donde descansan mis palabras.”",
@@ -270,7 +270,73 @@ const versos = [
   "“Tu voz tiene el poder de hacerme olvidar el ruido del mundo.”",
   "“Eres mi verso preferido entre los poemas del universo.”",
   "“En ti, Sofía, la ternura aprendió a tener rostro.”",
-  "“Eres mi historia favorita contada con besos.”"
+  "“Eres mi historia favorita contada con besos.”",
+  "“Te quiero no por quien eres, si no por quien soy cuando estoy contigo.”",
+  "“5 minutos contigo son suficientes para vivir una vida entera.”",
+  "“Y cuando vi tu sonrisa, lo supe. Esa era la sonrisa que queria ver siempre al despertar durante el resto de mi vida.”",
+  "“Que alguien te haga sentir cosas sin ponerte un dedo encima, eso es de admirar.”",
+  "“Y depronto llegara alguien que baile contigo aunque no le guste bailar y lo haga porque es contigo y nada mas.”",
+  "“Si pudiera vivir nuevamente mi vida, en la proxima te encontraria antes para amarte màs tiempo.”",
+  "“Quiero estar contigo. es tan simple y complicado como eso.”",
+  "“Quedate con la persona que te arregle los dias y te desordena la noche.”",
+  "“ Me perdi en su mirada, es que el color de tus ojos me encantan, no eran ni azules, ni verdes, son color cafe, cafe que quita el sueño cafe que produce desvelos.”",
+  "“Se que tal vez no sea tu primer amor, pero hare todo lo posible para que sea el ultimo, se lo prometo.”",
+  "“Este no es un peoma, ni una frase romantica, o bueno depende de como lo veas pero en fin aqui esta la cancion que tanto me hace pensarla: https://youtu.be/BXPGddyXva4?si=MgvUrt4vJXnk5irv, mas adelante le pongo una de kris r jaja.”",
+  "“Dicen que en la vida te enamoras muchas veces y que cada una de ellas es igual o mas increible que la anterior, pero que tal si tu y yo lo hacemos solo esta vez?.”",
+  "“Si me voy a sentir culpable por algo, quiero que ese algo sea desearte tanto.”",
+  "“Te amaria en contra de la razon, en contra de el miedo, en contra de el desanimo,y en contra de todo lo que pueda pasar, pero la pregunta es: A que no me enfrentaria por ti.”",
+  "“Que loco que los astronautas tengan que ir a la luna para ver el mundo, cuando yo solo con verte a los ojos veo el universo”",
+  "“Me has ayudado a ser un mejor hombre, a onocer el mundo, el amor, el placer, mejor dicho me provocas un extasis de sentimientos.”",
+  "“Que mujer tan soñadora eres y me pone tan contento tenerte y mas sabiendo que nunca te rendiras, eso es encantador y creeme que me encantas de todas las formas posibles.”",
+  "“Crees que lo que siento por ti es amor? nono, lo que siento por ti es algo aun mas grande que eso, y al igual que la inmensidad de el universo es inexplicable.”",
+  "“Creo que somos un caos perfecto, luz y oscuridad en su justa medida y eso es todo loo que temo y todo lo que necesito.”",
+  "“Dicen que cuando conoces al amor de tu vida, el tiempo se para... y es verdad. Lo que no dicen es que, cuando vuelve a ponerse en marcha, se mueve aún más rápidamente para recuperar el tiempo perdido.”",
+  "“Te quiero. Te quise desde el primer momento en que te vi. Te quise, incluso, antes de verte por primera vez.”",
+  "“Cuando te das cuenta de que quieres pasar el resto de tu vida con una persona, quieres que el resto de tu vida empiece lo antes posible.”",
+  "“Quiero todo de ti, para siempre, tú y yo cada día.”",
+  "“Entonces te das cuenta, que no es quien te mueva el piso.Sino quien te centra.No es quien te roba el corazon.Si no quien te hace sentir que lo tienes de vuelta.”",
+  "“No se cuantas veces nos hayamos visto hasta aqui, ojala que muchas, pero dejame decirte que cada vez que te mire es un paso mas cerca de la vida y cien mas lejos de la muerte.”",
+  "“Me gustaria que fueras mi primer amor, el unico o el ultimo o de ser posible que seas los tres.”",
+  "“Tienes un don para salvarme la vida, sofia.”",
+  "“El amor nunca deberia ser un secreto pues si guardas algo tan complejo en tu interior te puedes enfermar, por eso a cada lugar que voy y a cada perosna que conozco le cuento de ti.”",
+  "“Creo que al final siempre estuvimos parados en la puerta esperandonos el uno al otro y por fin nos encontramos ahora solo nos queda no dejar que la vida nos separe de nuevo.”",
+  "“Aveces no se lo que siento, solo se el tipo de hombre que quiero ser por ti y para ti.”",
+  "“Estar cerca de ti es como haber alcanzado lo inalcansable y haber descubierto lo que se creia era imposible.”",
+  "“Sabes que no me gusta hablarte tanto de esto, pero como evitarlo si en mi provocas el deseo mas fuerte, si aun no hemos estado juntos creeme que es algo que deseao, pero no mas que tus besos, no mas que tu presencia, pero al fin de cuentas si te deseo y demasiado.”",
+  "“Quiero que me digas si durmio Edison antes de encender la luz o si durmio marconi antes de encender la radio, o si he dormido yo despues de descubrir el mas lindo tesoro que la vida me pudo conceder, es decir a ti.”",
+  "“Claro que en un inicio tu pasado me asusto un poco, pero despues pense que ahora solo yo podria tenerte y se me paso.”",
+  "“Quiero que seas mia en cuerpo y alma y quiero ser tuyo de la misma forma, Aceptas?.”",
+  "“Te propongo que por cada vez que me extrañes y por cada vez que yo te extrañe nos demos un beso, porque solo asi esos besos seran para siempre, al menos desde mi parte.”",
+  "“No podia faltar la de kris r, porque se que le gusta https://youtu.be/d_Cuey6Y90s?si=kZ8vvBl8ozmOyzm9.”",
+  "“Justo aqui solo quiero recordarte que fuimos tan inesperados el uno para el otro y justamente eso lo hace mas lindo, recuerda siempre todos los lugares que tuvimos en comun antes de conocernos o las veces que tal vez coincidomos en el mismo lugar pero los 2 eramos ciegos, tanto como para no ver lo que siempre habiamos esperado, que era tenernos.”",
+  "“Dime, si me amas?.”",
+  "“Aqui te dejo esta linda cancion que representa nuestra linda historia, pero no quiero que nunca quede en un querer querernos si no en un nos amamos y quisimos para siempre https://youtu.be/8cKvvmPwgP4?si=K_swSTDzPP6r4iAm .”",
+  "“Quisiera sentir cada centimetro de tu cuerpo con mi boca, si me va a dejar?jaj.”",
+  "“Tus gemidos son una melodia que no puedo olvidar y que quisiera escuchar siempre.”",
+  "“Adoro cada espacio de ti, cada espacio debajo de tu ropa, cada lugar desde tu pelo hasta tus dedos, en resumen te adoro a ti.”",
+  "“Quisiera sentir cada centimetro de tu cuerpo con mi boca, si me va a dejar?jaja.”",
+  "“Recuerdo la vez que bese tus labios por primera vez, quien iba a pensar que iba a ser la droga que mi ser me pediria para siempre.”",
+  "“Como caballero tengo la mision de mantener siempre la sonrisa de mi princesa en este caso tu.”",
+  "“La valentia es un pequeño paso, y ese mismo paso es el que siempre voy a dar por ti .”",
+  "“Te amo 3 millones (entienda la referncia jajajaj).”",
+  "“Quiero estar para ti hasta el final de este camino.”",
+  "“Mi amor es un secreto que los ojos no saben guardar.”",
+  "“Me asusta la manera en que te amo, es como si antes de ti no hubiera nada y despues de ti tampoco.”",
+  "“Porque sin buscarte te  encuentro en todos lados, principalmente cuando cierro los ojos.”",
+  "“Tu eres mi camino y siempre vas a ser mi camino.”",
+  "“Yo te amo en todos los universos.”",
+  "“Lo mio fue un acto de justicia: Te robe un beso porque tu llevabas meses robandome el sueño.”",
+  "“Ojala, amor, cada vez que te mires las manos sientas que te faltan las mias.”",
+  "“Si te quiero es porque sos mi amor,  mi complice y todo. Y en la calle, codo a codo, somos mucho mas que dos.”",
+  "“Dormimos abrazados como por una hora, y eso en cierto modo fue mejor que haber hecho el amor.”",
+  "“Si nada nos salva de la muerte, al menos que el amor nos salve de la vida.”",
+  "“De nadie serè, solo de ti.Hasta que mis huesos se vuelvan cenizas, y mi corazon deje de latir.”",
+  "“Te amo sin saber como, ni cuando, ni donde, te amo directamente sin problemas ni orgullo, asi te amo porque no se amar de otra manera.”",
+  "“La escogi a usted porque me di cuenta que valia la pena, valia los riesgos...valia la vida.”",
+  "“Porque eres para mi la medida de todas las cosas, feliz año es un placer compartir mi tiempo contigo, te amo.”",
+
+  
+
 ];
 
 function buildMessages(n){
