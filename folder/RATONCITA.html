@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Calendario de amor para Sofía</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#080b18;
+    --card:rgba(255,255,255,0.05);
+    --muted:rgba(240,240,248,0.82);
+    --pink1:#ff8fb5;
+    --pink2:#ffb7ce;
+    --accent:#ffb6d1;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    height:100%;
+    font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+    background:var(--bg-dark);
+    color:#fff;
+    overflow-x:hidden;
+  }
+
+  /* Fondo */
+  .background{
+    position:fixed;
+    inset:0;
+    background:url('sofi.jpeg') center 25% / cover no-repeat;
+    filter:grayscale(1) brightness(1.1);
+    z-index:0;
+  }
+
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    z-index:1;
+  }
+
+  .app{
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+  }
+
+  .card{
+    width:100%;
+    max-width:1120px;
+    border-radius:14px;
+    padding:18px;
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 18px 60px rgba(0,0,0,0.6);
+    backdrop-filter:blur(6px);
+  }
+
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  h1{
+    margin:0;
+    font-family:'Great Vibes',cursive;
+    font-size:2.4rem;
+    color:var(--accent);
+    text-shadow:0 6px 20px rgba(255,140,170,0.1);
+  }
+
+  .meta{color:var(--muted);text-align:right;font-size:0.95rem}
+
+  .layout{
+    display:grid;
+    grid-template-columns:1fr 420px;
+    gap:18px;
+    margin-top:14px;
+  }
+  @media (max-width:980px){ .layout{grid-template-columns:1fr} }
+
+  .calendar{
+    padding:12px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.08);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(86px,1fr));
+    gap:12px;
+  }
+
+  .tile{
+    position:relative;
+    overflow:hidden;
+    border-radius:12px;
+    min-height:86px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:10px;
+    background:linear-gradient(135deg, rgba(255,155,185,0.28), rgba(255,255,255,0.08));
+    transition:transform .14s ease, box-shadow .14s ease, background .3s ease;
+  }
+  .tile:hover{
+    transform:translateY(-6px);
+    box-shadow:0 10px 25px rgba(255,160,190,0.25);
+    background:linear-gradient(135deg, rgba(255,160,190,0.4), rgba(255,255,255,0.1));
+  }
+
+  .tile .thumb{
+    position:absolute;
+    inset:0;
+    background:url('sofi.jpeg') center 25% / cover no-repeat;
+    filter:grayscale(1) opacity(0.12);
+  }
+
+  .tile.locked{
+    filter:grayscale(0.3) brightness(0.7);
+    opacity:0.7;
+    pointer-events:none;
+  }
+
+  .tile .date{font-weight:700;z-index:2}
+  .tile .weekday{font-size:0.8rem;color:var(--muted);z-index:2}
+
+  .panel{
+    padding:12px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.1);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+  }
+
+  .message-box{
+    width:100%;
+    min-height:180px;
+    border-radius:12px;
+    padding:16px;
+    background:rgba(0,0,0,0.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+
+  .message-text{
+    font-size:1.05rem;
+    line-height:1.45;
+    white-space:pre-wrap;
+    color:#fff;
+    max-width:100%;
+  }
+
+  /* corazón */
+  .heart-wrap{display:grid;place-items:center;padding:8px}
+  svg.heart{
+    width:220px;
+    height:220px;
+    display:block;
+    filter:drop-shadow(0 18px 40px rgba(255,146,180,0.12));
+  }
+  .pulse { animation:pulse 2.4s ease-in-out infinite; transform-origin:50% 50%; }
+  @keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+    100%{transform:scale(1)}
+  }
+
+  .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  .btn{
+    padding:10px 14px;
+    border-radius:10px;
+    border:0;
+    font-weight:700;
+    cursor:pointer;
+    background:linear-gradient(90deg,var(--pink1),var(--pink2));
+    color:#071026;
+    transition:opacity .2s ease;
+  }
+  .btn:hover{opacity:0.85}
+  .btn.ghost{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.3);
+    color:var(--muted);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:16px;
+    color:var(--muted);
+    font-size:0.9rem;
+  }
+</style>
+</head>
+<body>
+  <div class="background" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
+
+  <div class="app">
+    <div class="card">
+      <header>
+        <h1>Calendario de amor para Sofía</h1>
+        <div class="meta">
+          <div id="remainingBadge" class="badge">Cargando...</div>
+          <div id="todayLabel" style="margin-top:6px;color:var(--muted);font-size:0.92rem">—</div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <section class="calendar">
+          <div id="grid" class="grid"></div>
+        </section>
+
+        <aside class="panel">
+          <div class="message-box">
+            <div id="messageText" class="message-text">Perdon la demora pero ya esta 😘</div>
+          </div>
+
+          <div class="heart-wrap">
+            <svg class="heart pulse" viewBox="0 0 512 512">
+              <defs>
+                <linearGradient id="grad1" x1="0%" x2="100%">
+                  <stop offset="0%" stop-color="#ff9abf"/>
+                  <stop offset="100%" stop-color="#ffb6d1"/>
+                </linearGradient>
+              </defs>
+              <path d="M256 456s-168-110-168-216c0-68 56-120 112-92 26 12 40 36 56 62 16-26 30-50 56-62 56-32 120 16 120 56 0 106-168 216-168 216z"
+                fill="url(#grad1)" stroke="rgba(255,255,255,0.15)" stroke-width="2"></path>
+            </svg>
+          </div>
+
+          <div class="controls">
+            <button id="openToday" class="btn">Abrir mensaje de hoy</button>
+            <button id="surprise" class="btn ghost">Sorpresa</button>
+          </div>
+        </aside>
+      </div>
+
+      <footer>Hecho para mi ratoncita 💞</footer>
+    </div>
+  </div>
+
+<script>
+function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+const RANGE_START = startOfDay(new Date(2025, 9, 16));
+const RANGE_END   = startOfDay(new Date(2025, 11, 31));
+const MS_DAY = 24*60*60*1000;
+const TOTAL_DAYS = Math.round((RANGE_END - RANGE_START)/MS_DAY) + 1;
+const TODAY = startOfDay(new Date());
+
+const grid = document.getElementById('grid');
+const messageText = document.getElementById('messageText');
+
+const versos = [
+  "“Te quiero no por quién eres, sino por quién soy cuando estoy contigo.” — Jorge Luis Borges",
+  "“No te rindas, aún estás a tiempo de alcanzar y comenzar de nuevo.” — Mario Benedetti",
+  "“Te he nombrado reina porque eres lo que amo más que a mí mismo.” — Pablo Neruda",
+  "“En un beso, sabrás todo lo que he callado.” — Pablo Neruda",
+  "“Eres el silencio donde descansan mis palabras.”",
+  "“Eres la razón de cada sonrisa que me nace sin razón.”",
+  "“Mi amor por ti es el poema que el tiempo no puede borrar.”",
+  "“Contigo, Sofía, hasta el silencio se vuelve música.”",
+  "“Tu voz tiene el poder de hacerme olvidar el ruido del mundo.”",
+  "“Eres mi verso preferido entre los poemas del universo.”",
+  "“En ti, Sofía, la ternura aprendió a tener rostro.”",
+  "“Eres mi historia favorita contada con besos.”"
+];
+
+function buildMessages(n){
+  const out = [];
+  for(let i=0;i<n;i++){
+    if(i===0){
+      out.push("«Como dijo Albert Einstein, hay dos cosas que son infinitas: el universo y la estupidez humana.»\n\nY si quieres saber cuánto te quiero, pregúntame a mí por chat o adivine jajaja 💕");
+      continue;
+    }
+    out.push(versos[i % versos.length]);
+  }
+  return out;
+}
+const MESSAGES = buildMessages(TOTAL_DAYS);
+
+function dateAddDays(d, days){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days); }
+
+for(let i=0;i<TOTAL_DAYS;i++){
+  const d = dateAddDays(RANGE_START, i);
+  const tile = document.createElement('button');
+  tile.className = 'tile';
+  tile.dataset.idx = i;
+  const thumb = document.createElement('div'); thumb.className='thumb'; tile.appendChild(thumb);
+  const dateEl = document.createElement('div'); dateEl.className='date'; dateEl.textContent=('0'+d.getDate()).slice(-2);
+  const wd = document.createElement('div'); wd.className='weekday'; wd.textContent=d.toLocaleDateString(undefined,{weekday:'short'});
+  tile.appendChild(dateEl); tile.appendChild(wd);
+  if(d.getTime() > TODAY.getTime()) tile.classList.add('locked');
+  else tile.addEventListener('click', ()=>openDay(i));
+  grid.appendChild(tile);
+}
+
+async function openDay(idx){
+  const txt = MESSAGES[idx];
+  messageText.textContent = '';
+  for(let i=0;i<txt.length;i++){
+    messageText.textContent += txt[i];
+    await new Promise(r=>setTimeout(r,15));
+  }
+}
+
+document.getElementById('openToday').addEventListener('click', ()=>{
+  const idx = Math.round((TODAY.getTime() - RANGE_START.getTime())/MS_DAY);
+  if(idx < 0 || idx >= TOTAL_DAYS){ alert('El calendario comienza el 16 de octubre de 2025.'); return; }
+  const tile = grid.querySelector(`.tile[data-idx='${idx}']`);
+  if(tile && !tile.classList.contains('locked')) tile.click();
+});
+document.getElementById('surprise').addEventListener('click', ()=>{
+  const unlocked = Array.from(grid.querySelectorAll('.tile')).filter(t=>!t.classList.contains('locked'));
+  if(unlocked.length===0) return;
+  const choice = unlocked[Math.floor(Math.random()*unlocked.length)];
+  choice.click();
+});
+</script>
+</body>
+</html>
